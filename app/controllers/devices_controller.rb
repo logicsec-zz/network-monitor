@@ -1,6 +1,9 @@
 class DevicesController < ApplicationController
   before_action :authenticate_user!
 
+  def index
+  end
+
   def new
     @device = Device.new
   end

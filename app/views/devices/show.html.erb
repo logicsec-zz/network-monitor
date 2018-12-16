@@ -1,3 +1,6 @@
+
+
+
 <div class="page-header">
    <div class="pull-right">
       <h3 id="link-status">Up</h3>
@@ -43,9 +46,6 @@
          <div id="icmp-in-out" class="line-chart"></div>
       </div>
    </div>
-
-
-
 </div>
 
 
@@ -66,6 +66,8 @@
    <%= link_to "Edit", edit_device_path(@device), :class => "btn btn-default" %>
    <%= link_to "Delete", device_path(@device), method: :delete, :prompt => "Are you sure?", :class => "btn btn-danger" %>
 </div>
+
+
 <%= javascript_include_tag "jquery.flot" %>
 <%= javascript_include_tag "jquery.flot.resize" %>
 <%= javascript_include_tag "jquery.flot.stack" %>
@@ -79,30 +81,30 @@
 	if(last_request == null) return 0;
 	else return data[var_name] - last_request[var_name];
    }
-   
+
    //--- plot
    var pos = 0;
    function plot_lineChart(target_id,inn,out){
 	var ticks = []; for(var x=1;x<=max_items;x++) ticks.push([x+pos,(x+pos).toString()]);
 	$.plot($(target_id),
-		[ { data: inn, label: "In"}, { data: out, label: "Out" }], 
+		[ { data: inn, label: "In"}, { data: out, label: "Out" }],
 		{
 			series: { lines: { show: true, lineWidth: 1, fill: true, fillColor: { colors: [ { opacity: 0.05 }, { opacity: 0.09 } ] } },
           points: { show: true, lineWidth: 2, radius: 3 }, shadowSize: 0, stack: true, borderWidth: 2, borderColor: "#EAEAEA" },
           grid: { hoverable: true, clickable: true, tickColor: "#eaeaea", borderWidth: 1, borderColor: "#EAEAEA" },
-          legend: { labelBoxBorderColor: "#fff" },  
+          legend: { labelBoxBorderColor: "#fff" },
           colors: ["green", "#30a0eb"],
           xaxis: {
           ticks: ticks,
           font: { size: 12, family: "Open Sans, Arial", variant: "small-caps", color: "#9da3a9" } },
-          yaxis: { 
+          yaxis: {
             ticks:3, tickDecimals: 0, font: {size:12, color: "#9da3a9"}}
           });
         pos++;
    }
-   
+
    // Link
-   
+
    function load_LINK(data){
    	var content = "";
    	var is = data["IF-MIB::ifNumber.0"];
@@ -119,7 +121,7 @@
    	$("#link_graphs").html(content);
    	link_loaded = true;
    }
-   
+
    var link_in = {};
    var link_out = {};
    function update_LINK(data,freq){
@@ -137,13 +139,13 @@
    			link_out[i].shift();
    		}
    	}
-   	
+
    	console.log(link_in);
    	console.log(link_out);
    	for(var i=1;i<=is;i++)
    		plot_lineChart("#link-in-out-"+i,link_in[i],link_out[i]);
    }
-   
+
    // IP (in and out)
    var ip_in = [];
    var ip_out = [];
@@ -157,7 +159,7 @@
    	}
    	plot_lineChart("#ip-in-out",ip_in,ip_out);
    }
-   
+
    // TCP (in and out)
    var tcp_in = [];
    var tcp_out = [];
@@ -168,9 +170,9 @@
    		tcp_in.shift();
    		tcp_out.shift();
    	}
-   	plot_lineChart("#tcp-in-out",tcp_in,tcp_out);	
+   	plot_lineChart("#tcp-in-out",tcp_in,tcp_out);
    }
-   
+
    // UDP (in and out)
    var upd_in = [];
    var udp_out = [];
@@ -181,9 +183,9 @@
    		upd_in.shift();
    		udp_out.shift();
    	}
-   	plot_lineChart("#udp-in-out",upd_in,udp_out);	
+   	plot_lineChart("#udp-in-out",upd_in,udp_out);
    }
-   
+
    // ICMP (in and out)
    var icmp_in = [];
    var icmp_out = [];
@@ -194,9 +196,9 @@
    		icmp_in.shift();
    		icmp_out.shift();
    	}
-   	plot_lineChart("#icmp-in-out",icmp_in,icmp_out);	
+   	plot_lineChart("#icmp-in-out",icmp_in,icmp_out);
    }
-   
+
    // CONFIG TABLE
    function config_Table(data){
    	$("#config_table").html("");
@@ -206,11 +208,11 @@
    	});
    	$("#config_table").html(table);
    }
-   
+
    // INTERFACES
    /*
    <h3>Interfaces Control</h3>
-   
+
    */
    function update_Interfaces(data){
    	var is = data["IF-MIB::ifNumber.0"];
@@ -235,7 +237,7 @@
    	}
    	$("#interfaces_control").html(content);
    }
-   
+
    function update(data){
    	console.log(data);
    	update_LINK(data,<%= @device.frequency %>);
@@ -247,7 +249,7 @@
    	update_Interfaces(data);
    	last_request = data;
    }
-   
+
    var last_status = true;
    function link_status(bool){
    	if(bool){
@@ -257,9 +259,9 @@
    	}
    	last_status = bool;
    }
-   
-   
-   
+
+
+
    function run(){
    	try{
    		$.getJSON(run_path,function(data){
@@ -272,8 +274,8 @@
    		console.log(err);
    	}
    }
-   
-   
+
+
    $(function(){
    	setInterval(run,<%=@device.frequency%>*1000);
    	$(document).ajaxError(function(event,request,settings){
@@ -281,5 +283,3 @@
    	});
    });
 </script>
-
-

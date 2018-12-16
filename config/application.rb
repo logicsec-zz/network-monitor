@@ -12,8 +12,9 @@ module NetworkMonitor
     config.encoding = "utf-8"
     config.filter_parameters += [:password]
     config.active_support.escape_html_entities_in_json = true
-    config.assets.enabled = true
+    config.assets.enabled = false
+    config.assets.compile = false
     config.assets.version = '1.0'
-    config.assets.paths << "#{Rails}/public/assets/fonts" 
+    config.assets.paths << "#{Rails}/public/assets/fonts"
   end
 end

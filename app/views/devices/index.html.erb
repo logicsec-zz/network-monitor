@@ -1,0 +1,32 @@
+<div class="row col-md-6 custyle">
+
+</div>
+<div class="row col-md-6 custyle">
+  <table class="table table-striped custab">
+    <thead>
+      <%= link_to new_device_path, :class => 'btn btn-primary btn-xs pull-right' do %>
+        <b>+</b> Add New Device
+      <% end %>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>IP Address</th>
+            <th class="text-center">Action</th>
+        </tr>
+    </thead>
+    <% @devices.each do |d| %>
+      <tr>
+          <td><%= d.id %></td>
+          <td><%= link_to d.name,device_path(d) %></td>
+          <td><%= d.ip %></td>
+          <td class="text-center">
+            <%= link_to edit_device_path(d), :class => "btn btn-info btn-xs" do %>
+              <span class="glyphicon glyphicon-edit"></span> Edit
+            <% end %>
+            <%= link_to device_path(d), method: :delete, :prompt => "Are you sure?", :class => "btn btn-danger btn-xs" do %>
+              <span class="glyphicon glyphicon-remove"></span> Delete
+            <% end %>
+      </tr>
+    <% end %>
+  </table>
+</div>

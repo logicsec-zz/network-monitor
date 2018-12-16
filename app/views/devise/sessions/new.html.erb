@@ -1,26 +1,105 @@
-<h2>Log in</h2>
+<style>
+  @import url(https://fonts.googleapis.com/css?family=Quicksand);
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+  html {
+    height: 100%;
+    overflow: hidden;
+  }
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
+  body{
+    font-family: "Quicksand", sans-serif;
+    height: 100%;
+    margin: 0;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background: #grey;
+    background: #466368;
+    background: -webkit-linear-gradient(#648880, #293f50);
+    background:    -moz-linear-gradient(#648880, #293f50);
+    background:         linear-gradient(#648880, #293f50);
+    */
+  }
 
-  <% if devise_mapping.rememberable? -%>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+  #wrapper {
+    width: 50%;
+    height: 100%;
+    bottom: 0;
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    clear: both;
+    min-width: 400px;
+    overflow: hidden;
+  }
+
+  #loginWindow {
+    background-color: white;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 3em;
+    padding-right: 3em;
+    padding-bottom: 2em;
+    border: solid #eee 1px;
+    border-radius: 5px;
+    overflow: hidden;
+    width: 0;
+    height: 0;
+  }
+
+  .input-group {
+    margin-top: 2em;
+    margin-bottom: 2em;
+    opacity: 0;
+  }
+
+  .page-header {
+    opacity: 0;
+  }
+
+  .left {
+    float: right;
+    font-size: 1.5em;
+  }
+
+  .btn {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0;
+  }
+</style>
+
+<script>
+  $( document ).ready( function(){
+  $( '#loginWindow' ).animate({ 'width': '100%' }, 500)
+    .delay(30)
+    .animate({ 'height': '300px' }, 500);
+  $( '.page-header, .input-group, .btn' )
+    .delay(850)
+    .animate({ 'opacity': '100' }, 7000);
+});
+</script>
+
+<!-- jQuery/Bootstrap login window -->
+
+<div id="wrapper">
+  <div id="loginWindow">
+    <div class="page-header">
+      <p class="left">
+        <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+      </p>
+      <h1><%= image_tag("http://www.digicamsecurity.com/portal/lib/tpl/bootstrap3/images/logo_dark.png", height: '80') %></h1>
     </div>
-  <% end -%>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="input-group">
+        <span class="input-group-addon" id="basic-addon1">Email</span>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", :class => 'form-control' %>
+      </div>
+      <div class="input-group">
+        <span class="input-group-addon" id="basic-addon2">Password</span>
+        <%= f.password_field :password, autocomplete: "current-password", :class => 'form-control' %>
+      </div>
+      <button class="btn btn-primary" type="submit">Submit</button>
+    <% end %>
   </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>
