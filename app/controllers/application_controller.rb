@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  before_filter :load_devices
+  before_action :authenticate_user!
+  before_action :load_devices
+
   def load_devices
   	@devices = Device.order(:name)
   end
