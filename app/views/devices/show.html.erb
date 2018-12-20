@@ -1,6 +1,3 @@
-
-
-
 <div class="page-header">
    <div class="pull-right">
       <h3 id="link-status">Up</h3>
@@ -253,9 +250,9 @@
    var last_status = true;
    function link_status(bool){
    	if(bool){
-   		$("#link-status").css("color","green").html("Up <i class='glyphicon glyphicon-arrow-up'></i>");
+   		$("#link-status").css("color","green").html("Up <i class='fa fa-arrow-circle-up'></i>");
    	} else {
-   		$("#link-status").css("color","red").html("Down <i class='glyphicon glyphicon-arrow-down'></i>");
+   		$("#link-status").css("color","red").html("Down <i class='fa fa-arrow-circle-down'></i>");
    	}
    	last_status = bool;
    }

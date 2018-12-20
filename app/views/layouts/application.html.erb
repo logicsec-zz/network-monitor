@@ -3,6 +3,7 @@
   <head>
     <title>Network Monitor</title>
     <%= stylesheet_link_tag    "application", :media => "all" %>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
   </head>
@@ -24,8 +25,12 @@
               <li><%= link_to "Devices",devices_url, :class => 'text-success' %></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-              <li><%= link_to "Add Device",new_device_path, :class => 'text-success' %></li>
-              <li><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>
+              <li><%= current_user.fullname %></li>
+              <li>
+                <%= link_to destroy_user_session_path, method: :delete do %>
+                  <i class='fa fa-sign-out'></i>
+                <% end %>
+              </li>
             </ul>
           </div>
         </div>
