@@ -8,50 +8,58 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-      <% if user_signed_in? %>
-        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <%= image_tag("http://www.digicamsecurity.com/portal/lib/tpl/bootstrap3/images/logo_light.png", height: '50') %>
-          </div>
-          <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-              <li><%= link_to "Home",dashboard_index_url, :class => 'text-success' %></li>
-              <li><%= link_to "Devices",devices_url, :class => 'text-success' %></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-              <li><%= current_user.fullname %></li>
-              <li>
-                <%= link_to destroy_user_session_path, method: :delete do %>
-                  <i class='fa fa-sign-out'></i>
-                <% end %>
-              </li>
-            </ul>
-          </div>
-        </div>
-      <% end %>
-        <div class="container-fluid content padding-top">
-          <div class="row">
-            <% if notice %>
-              <div class="alert alert-success alert-top">
-                <i class="icon-exclamation-sign"></i>
-                <%= notice %>
-              </div>
-            <% end %>
-            <% if alert %>
-              <div class="alert alert-danger alert-top">
-                <i class="icon-remove-sign"></i>
-                <%= alert %>
-              </div>
-            <% end %>
-            </div>
-        	<%= yield %>
-        </div>
+    <%= render 'layouts/nav/top_nav' if user_signed_in? %>
+    <div class="container-fluid">
+      <div class="row">
+        <%= render 'layouts/nav/side_nav' if user_signed_in? %>
+        <%= yield %>
       </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="../../assets/js/vendor/popper.min.js"></script>
+    <script src="../../dist/js/bootstrap.min.js"></script>
+
+    <!-- Icons -->
+    <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+    <script>
+      feather.replace()
+    </script>
+
+    <!-- Graphs -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+    <script>
+      var ctx = document.getElementById("myChart");
+      var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+          datasets: [{
+            data: [15339, 21345, 18483, 24003, 23489, 24092, 12034],
+            lineTension: 0,
+            backgroundColor: 'transparent',
+            borderColor: '#007bff',
+            borderWidth: 4,
+            pointBackgroundColor: '#007bff'
+          }]
+        },
+        options: {
+          scales: {
+            yAxes: [{
+              ticks: {
+                beginAtZero: false
+              }
+            }]
+          },
+          legend: {
+            display: false,
+          }
+        }
+      });
+    </script>
   </body>
 </html>
