@@ -2,7 +2,7 @@ class SnmpHelper
 
 	def self.run(id)
 		@device = Device.find(id)
-		
+		#--
 		the_json = {}
 		SNMP::Manager.open(:host => @device.ip, :community => @device.community) do |manager|
 
@@ -60,8 +60,6 @@ class SnmpHelper
 		end
 		return the_json
 	end
-
-
 	def self.is_i?(s)
 		return true if Float(s) rescue false
 	end

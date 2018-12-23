@@ -8,6 +8,32 @@ body {
   vertical-align: text-bottom;
 }
 
+.fixed-top {
+  box-shadow: 0 2px 4px 0 rgba(43,43,43,0.1);
+}
+
+.navbar-dark .navbar-brand {
+  color: #fff;
+  position: relative;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  float: left;
+  text-align: center;
+  text-transform: uppercase;
+  width: 250px;
+  -webkit-box-shadow: 0 4px 4px -4px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 4px -4px rgba(0,0,0,0.1);
+  background: #263544;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: #333 !important;
+}
+
 /*
  * Sidebar
  */
@@ -17,6 +43,7 @@ body {
   top: 0;
   bottom: 0;
   left: 0;
+  width: 250px;
   z-index: 100; /* Behind the navbar */
   padding: 48px 0 0; /* Height of navbar */
   box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
@@ -25,19 +52,13 @@ body {
 
 .sidebar-sticky {
   position: relative;
-  top: 0;
+  top: 0px;
   height: calc(100vh - 48px);
   padding-top: .5rem;
   overflow-x: hidden;
   overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
 }
 
-@supports ((position: -webkit-sticky) or (position: sticky)) {
-  .sidebar-sticky {
-    position: -webkit-sticky;
-    position: sticky;
-  }
-}
 
 .sidebar .nav-link {
   font-weight: 500;

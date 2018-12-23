@@ -13,6 +13,7 @@
  *= require bootstrap.min
  *= require bootstrap-theme
  *= require material_icons
+ *= require cards
  */
 
 /* Sticky footer styles

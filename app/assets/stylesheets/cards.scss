@@ -1,0 +1,171 @@
+.card-counter{
+    box-shadow: 2px 2px 10px #DADADA;
+    margin: 5px;
+    padding: 20px 10px;
+    background-color: #fff;
+    height: 100px;
+    border-radius: 5px;
+    transition: .3s linear all;
+  }
+
+  .card-counter:hover{
+    box-shadow: 4px 4px 20px #DADADA;
+    transition: .3s linear all;
+  }
+
+  .card-counter.primary{
+    background-color: #007bff;
+    color: #FFF;
+  }
+
+  .card-counter.danger{
+    background-color: #ef5350;
+    color: #FFF;
+  }
+
+  .card-counter.success{
+    background-color: #66bb6a;
+    color: #FFF;
+  }
+
+  .card-counter.info{
+    background-color: #26c6da;
+    color: #FFF;
+  }
+
+  .card-counter i{
+    font-size: 5em;
+    opacity: 0.2;
+  }
+
+  .card-counter .count-numbers{
+    position: absolute;
+    right: 35px;
+    top: 20px;
+    font-size: 32px;
+    display: block;
+  }
+
+  .card-counter .count-name{
+    position: absolute;
+    right: 35px;
+    top: 65px;
+    font-style: italic;
+    text-transform: capitalize;
+    opacity: 0.5;
+    display: block;
+    font-size: 18px;
+  }
+
+  .card {
+  background-color: #fff;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 300px;
+  height: 375px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.card .about {
+  height: 225px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.card .about h3,
+.card .about .lead {
+  font-weight: 300;
+  margin: 0;
+}
+
+.card .about h3 {
+  font-size: 24px;
+}
+
+.card .about .lead {
+  color: #aaa;
+}
+
+.card .info {
+  float: left;
+  padding: 10px 30px 10px 0;
+}
+
+.card .info p {
+  font-size: 11px;
+  color: #aaa;
+  font-weight: 300;
+}
+
+.legends {
+  padding-top: 20px;
+  overflow: hidden;
+}
+
+.legend {
+  display: block;
+  width: 8px;
+  height: 8px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 50%;
+}
+
+.legend--this {
+  background-color: #5555FF;
+}
+
+.legend--prev {
+  background-color: #FF55B8;
+}
+
+.axis {
+  position: absolute;
+  color: #fff;
+  z-index: 1;
+  text-transform: uppercase;
+  display: flex;
+  width: 100%;
+  bottom: 0;
+}
+
+.axis .tick {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  opacity: 0.2;
+  font-size: 11px;
+  text-align: center;
+  line-height: 40px;
+  padding-top: 150px;
+}
+
+.axis .tick:hover {
+  opacity: 1;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.axis .tick .value {
+  transform: translateY(-40px);
+  transition: 0.3s transform;
+  position: absolute;
+  top: 20px;
+  color: #444;
+  border-radius: 2px;
+  width: 100%;
+  line-height: 20px;
+}
+
+.axis .tick:hover .value.value--this {
+  transform: translateY(0);
+  display: block;
+}
+
+.value.value--this {
+  color: #5555FF;
+  font-weight: bold;
+}

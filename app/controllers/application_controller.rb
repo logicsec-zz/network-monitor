@@ -5,5 +5,6 @@ class ApplicationController < ActionController::Base
   def load_devices
   	@devices = Device.order(:name)
   end
+  
 
 end
