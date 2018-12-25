@@ -7,6 +7,7 @@ class DevicesController < ApplicationController
   def new
     @device = Device.new
   end
+
   def create
     @device = Device.new(device_params)
     if @device.save
@@ -15,9 +16,11 @@ class DevicesController < ApplicationController
       render action: :new
     end
   end
+
   def edit
      @device = Device.find(params[:id])
   end
+
   def update
     @device = Device.find(params[:id])
     if @device.update_attributes(device_params)
@@ -26,9 +29,11 @@ class DevicesController < ApplicationController
       render :edit
     end
   end
+
   def show
     @device = Device.find(params[:id])
   end
+
   def destroy
     @device = Device.find(params[:id])
     @device.destroy
@@ -36,7 +41,6 @@ class DevicesController < ApplicationController
   end
 
   private
-
     def device_params
       params.require(:device).permit(:name, :ip, :frequency, :community)
     end

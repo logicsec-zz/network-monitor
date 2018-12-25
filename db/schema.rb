@@ -10,13 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_16_071848) do
+ActiveRecord::Schema.define(version: 2018_12_25_191910) do
 
   create_table "devices", force: :cascade do |t|
     t.string "name"
     t.string "ip"
     t.string "community"
     t.integer "frequency"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "mibs", force: :cascade do |t|
+    t.integer "mib_id"
+    t.string "name"
+    t.string "oid"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
